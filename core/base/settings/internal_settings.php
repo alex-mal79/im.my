@@ -2,7 +2,7 @@
 defined('VG_ACCESS') or die('Access denied');
 //Шаблоны сайта
 const TEMPLATE = ROOT.DS.'templates'.DS.'default'.DS;
-const ADMIN_TEMPLATES = ROOT.DS.'core'.DS.'admin'.DS.'view'.DS;
+const ADMIN_TEMPLATE = ROOT.DS.'core'.DS.'admin'.DS.'view'.DS;
 //Константы безопасности
 const COOKIE_VERSION = '1.0.0';
 const CRYPT_KEY = '';

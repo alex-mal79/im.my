@@ -1,6 +1,8 @@
 <?php
 namespace core\base\controller;
 
+use core\base\settings\Settings;
+use core\base\settings\ShopSettings;
 //Основной маршруный контроллер
 class RouteController{
     static private $_instance;
@@ -16,5 +18,11 @@ class RouteController{
     }
 
     private function __construct(){
+
+        $s = Settings::instance();
+        $s1 = ShopSettings::instance();
+
+
+        exit();
     }
 }

@@ -5,7 +5,7 @@ use core\base\settings\Settings;
 //Класс настрек плагина магазина
 class ShopSettings{
     static private $_instance;
-    private $baseSetting;
+    private $baseSettings;
 
     private $routes = [
         //Маршруты админ панели

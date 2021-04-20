@@ -10,7 +10,10 @@ class Settings{
         'admin' => [
             'alias' => 'admin',
             'path' => 'core/admin/controller/',
-            'hrUrl' => false
+            'hrUrl' => false,
+            'routes' => [
+
+            ]
         ],
         //Пути настроек сайта
         'settings' => [
@@ -19,14 +22,15 @@ class Settings{
         //Настройки для плигинов
         'plugins' => [
             'path' => 'core/plugins/',
-            'hrUrl' => false
+            'hrUrl' => false,
+            'dir' => false
         ],
         //Настройки пользовательской чати сайта
         'user' => [
             'path' => 'core/user/controller/',
             'hrUrl' => true,
             'routes' => [
-                'catalog' => 'site'
+
             ]
         ],
         //Настройки по умолчанию
@@ -36,12 +40,6 @@ class Settings{
             'outputMethod' => 'outputData'
         ]
     ];
-
-    private $templateArr = [
-        'text' => ['name', 'phone', 'address'],
-        'textarea' => ['content', 'keywords']
-    ];
-    private $lal = 'lal';
 
     private function __construct(){
     }

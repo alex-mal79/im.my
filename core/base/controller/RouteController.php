@@ -4,14 +4,14 @@ namespace core\base\controller;
 use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
 use core\base\settings\ShopSettings;
-//Основной маршруный контроллер
-class RouteController{
+/**
+ * Основной маршруный контроллер
+ * Class RouteController
+ * @package core\base\controller
+ */
+class RouteController extends BaseController{
     static private $_instance;
     protected $routes;
-    protected $controller;
-    protected $inputMethod;
-    protected $outputMethod;
-    protected $parameters;
 
     private function __clone(){
     }
@@ -33,10 +33,22 @@ class RouteController{
             $this->routes = Settings::get('routes');
             if(!$this->routes) throw new RouteException('Сайт находится на техническом обслуживании');
             //Маршруты для административной части
-            if(strpos($address_str, $this->routes['admin']['alias']) === strlen(PATH)){
-                $url = explode('/', substr($address_str, strlen(PATH . $this->routes['admin']['alias'] ) + 1));
+            $url = explode('/', substr($address_str, strlen(PATH)));
+            if($url[0] && $url[0] ===  $this->routes['admin']['alias']){
+                array_shift($url);
+                //Маршруты для плагинов
                 if($url[0] && is_dir(ROOT.DS. $this->routes['plugins']['path'] . $url[0])){
-
+                    $plugin = array_shift($url);
+                    $pluginSettings = $this->routes['settings']['path'] . ucfirst($plugin . 'Settings');
+                    if(file_exists(ROOT.DS. $pluginSettings. '.php')){
+                        $pluginSettings = str_replace('/', '\\', $pluginSettings);
+                        $this->routes = $pluginSettings::get('routes');
+                    }
+                    $dir = $this->routes['plugins']['dir'] ? '/' . $this->routes['plugins']['dir'] . '/' : '/';
+                    $dir = str_replace('//', '/', $dir);
+                    $this->controller = $this->routes['plugins']['path'] . $plugin . $dir;
+                    $hrUrl = $this->routes['plugins']['hrUrl'];
+                    $route = 'plugins';
                 }
                 else{
                     $this->controller = $this->routes['admin']['path'];
@@ -46,14 +58,33 @@ class RouteController{
             }
             //Маршруты для пользлвательской части
             else{
-                $url = explode('/', substr($address_str, strlen(PATH)));
                 $hrUrl = $this->routes['user']['hrUrl'];
                 $this->controller = $this->routes['user']['path'];
                 $route = 'user';
             }
             $this->createRoute($route, $url);
 
-            exit();
+            if($url[1]){
+                $count = count($url);
+                $key = '';
+                if(!$hrUrl){
+                    $i = 1;
+                }
+                else{
+                    $this->parameters['alias'] = $url[1];
+                    $i = 2;
+                }
+                for( ; $i < $count; $i++){
+                    if(!$key){
+                        $key = $url[$i];
+                        $this->parameters[$key] = '';
+                    }
+                    else{
+                        $this->parameters[$key] = $url[$i];
+                        $key = '';
+                    }
+                }
+            }
         }
         else{
             try{

@@ -8,16 +8,14 @@ class ShopSettings{
     private $baseSettings;
 
     private $routes = [
-        //Маршруты админ панели
-        'admin' => [
-            'name' => 'sudo'
-        ],
-    ];
+        //Настройки для плигинов
+        'plugins' => [
+            'dir' => false,
+            'routes' => [
 
-    private $templateArr = [
-        'text' => ['price', 'short', 'name'],
-        'textarea' => ['goods_content']
-        ];
+            ]
+        ]
+    ];
 
     private function __construct(){
     }

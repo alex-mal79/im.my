@@ -9,6 +9,8 @@ use core\base\settings\Settings;
  * @package core\base\controller
  */
 abstract class BaseController{
+    use \core\base\controller\BaseMethods;
+
     protected $controller;
     protected $inputMethod;
     protected $outputMethod;

@@ -1,10 +1,12 @@
 <?php
 namespace core\base\settings;
 
+use core\base\controller\Singleton;
 use core\base\settings\Settings;
 //Класс настрек плагина магазина
 class ShopSettings{
-    static private $_instance;
+    use Singleton;
+
     private $baseSettings;
 
     private $routes = [
@@ -17,22 +19,15 @@ class ShopSettings{
         ]
     ];
 
-    private function __construct(){
-    }
-
-    private function __clone(){
-    }
-
     static public function get($property){
-        return self::instance()->$property;
+        return self::getInstance()->$property;
     }
 
-    static public function instance(){
+    static private function getInstance(){
         if(self::$_instance instanceof self){
             return self::$_instance;
         }
-        self::$_instance = new self();
-        self::$_instance->baseSettings = Settings::instance(); //Объект основных настроект
+        self::instance()->baseSettings = Settings::instance(); //Объект основных настроект
         $baseProperties = self::$_instance->baseSettings->clueProperties(get_class());
         self::$_instance->setProperty($baseProperties);
         return self::$_instance;

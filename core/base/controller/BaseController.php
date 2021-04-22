@@ -17,6 +17,8 @@ abstract class BaseController{
     protected $parameters;
     protected $page;
     protected $errors;
+    protected $styles;
+    protected $scripts;
 //Динамическое создание объектов различных классов
     public function route(){
         $controller = str_replace('/', '\\', $this->controller);
@@ -46,7 +48,7 @@ abstract class BaseController{
             $this->page = $data;
         }
         if($this->errors){
-            $this->writeLog();
+            $this->writeLog($this->errors);
         }
         $this->getPage();
     }
@@ -76,5 +78,24 @@ abstract class BaseController{
             echo $this->page;
         }
         exit();
+    }
+    //Метод инициализации стилей и скриптов пользовательской и адиминистративной частей
+    protected function init($admin = false){
+        if(!$admin){
+            if(USER_CSS_JS['styles']){
+                foreach (USER_CSS_JS['styles'] as $item) $this->styles[] = PATH . TEMPLATE . trim($item, '/');
+            }
+            if(USER_CSS_JS['scripts']){
+                foreach (USER_CSS_JS['scripts'] as $item) $this->scripts[] = PATH . TEMPLATE . trim($item, '/');
+            }
+        }
+        else{
+            if(ADMIN_CSS_JS['styles']){
+                foreach (ADMIN_CSS_JS['styles'] as $item) $this->styles[] = PATH . ADMIN_TEMPLATE . trim($item, '/');
+            }
+            if(ADMIN_CSS_JS['scripts']){
+                foreach (ADMIN_CSS_JS['scripts'] as $item) $this->scripts[] = PATH . ADMIN_TEMPLATE . trim($item, '/');
+            }
+        }
     }
 }

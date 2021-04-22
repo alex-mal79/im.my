@@ -3,7 +3,6 @@ namespace core\base\controller;
 
 use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
-use core\base\settings\ShopSettings;
 /**
  * Основной маршруный контроллер
  * Class RouteController
@@ -24,7 +23,7 @@ class RouteController extends BaseController{
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
         if($path ===PATH){
             $this->routes = Settings::get('routes');
-            if(!$this->routes) throw new RouteException('Сайт находится на техническом обслуживании');
+            if(!$this->routes) throw new RouteException('Отсутствуют маршруты в базовых настройках', 1);
             //Маршруты для административной части
             $url = explode('/', substr($address_str, strlen(PATH)));
             if($url[0] && $url[0] ===  $this->routes['admin']['alias']){
@@ -80,12 +79,7 @@ class RouteController extends BaseController{
             }
         }
         else{
-            try{
-                throw new \Exception('Не корректная директория сайта');
-            }
-            catch (\Exception $e){
-                exit($e->getMessage());
-            }
+            throw new RouteException('Не корректная директория сайта', 1);
         }
     }
     /**

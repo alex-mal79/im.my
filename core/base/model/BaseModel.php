@@ -108,4 +108,31 @@ class BaseModel extends BaseModelMethods {
         $query = "SELECT $fields FROM $table $join $where $order $limit";
         return $this->query($query);
     }
+
+    /**
+     * Основной метод вставки данных в БД
+     * @param $table - таблица для вставки данных
+     * @param array $set - массив параметров
+     * fields => [поле => значение]; если не указан, то обрабатывается $_POST [поле => значение]
+     * разрешена передача, например, NOW() в качестве mySql функции обычно строкой
+     * files => [поле => значение]; можно подать массив вида [поле => [массив значений]]
+     * except => ['исключение 1', 'исключение 2'] - исключает данные элементы массива из добавления в запрос
+     * return_id => true | false - возвращать или нет идентификатор вставленной записи
+     * @return mixed
+     */
+    final public function add($table, $set){
+        $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : $_POST;
+        $set['files'] = (is_array($set['files']) && !empty($set['files'])) ? $set['files'] : false;
+        if(!$set['fields'] && !$set['files']) return false;
+        $set['return_id'] = $set['return_id'] ? true : false;
+        $set['except'] = (is_array($set['except']) && !empty($set['except'])) ? $set['except'] : false;
+
+        $insert_arr = $this->createInsert($set['fields'], $set['files'], $set['except']);
+
+        if($insert_arr){
+            $query = "INSERT INTO $table ({$insert_arr['fields']}) VALUES ({$insert_arr['values']})";
+            return $this->query($query, 'c', $set['return_id']);
+        }
+        return false;
+    }
 }

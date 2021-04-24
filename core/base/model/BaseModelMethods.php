@@ -146,4 +146,29 @@ abstract class BaseModelMethods{
         }
         return compact('fields', 'join', 'where');
     }
+    protected function createInsert($fields, $files, $except){
+        $insert_arr = [];
+        if($fields){
+            $sql_func = ['NOW()'];
+            foreach ($fields as $row => $value){
+                if($except && in_array($row, $except)) continue;
+                $insert_arr['fields'] .= $row . ',';
+                if(in_array($value, $sql_func)){
+                    $insert_arr['values'] .= $value . ',';
+                }
+                else{
+                    $insert_arr['values'] .= "'" . addslashes($value) . "',";
+                }
+            }
+        }
+        if($files){
+            foreach ($files as $row => $file){
+                $insert_arr['fields'] .= $row . ',';
+                if(is_array($file)) $insert_arr['values'] .= "'" . addslashes(json_encode($file)) . "',";
+                    else $insert_arr['values'] .= "'" . addslashes($file) . "',";
+            }
+        }
+        foreach ($insert_arr as $key => $arr) $insert_arr[$key] = rtrim($arr, ',');
+        return $insert_arr;
+    }
 }

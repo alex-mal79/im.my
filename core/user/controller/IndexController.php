@@ -6,6 +6,7 @@ use core\base\controller\BaseController;
 class IndexController extends BaseController{
     protected function inputData(){
 
-        exit();
+        exit('Главная');
+
     }
 }

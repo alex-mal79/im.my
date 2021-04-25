@@ -8,16 +8,25 @@ class IndexController extends BaseController {
     protected function inputData(){
         $db = Model::instance();
         $table = 'auto';
-        $files['gallery_img'] = ["red''.jpg", 'blue.jpg', 'black.jpg'];
-        $files['img'] = 'main_img.jpg';
-        $_POST['brand'] = 'MAN';
-        $res = $db->add($table, [
+        $files['img'] ='';
+        $files['gallery_img'] ='';
+        $_POST['id'] = 14;
+        $_POST['brand'] = '';
+        $_POST['model'] = '';
+        $res = $db->edit($table, ['files' => $files]);
+//        $res = $db->add($table, [
 //            'fields' => ['brand' => 'Honda', 'model' => 'CRV'],
 //            'except' => ['brand'],
 //            'files' => $files
 //            'where' => ['brand' => 'AUDI'],
 //            'limit' => '1'
-        ]);
-        exit('id = ' . $res['id'] . ' brand = ' . $res['brand']);
+//        ]);
+//        $res = $db->edit($table, [
+//            'fields' => ['id' => 12, 'brand' => 'Honda'],
+//            'files' => $files,
+//            'where' => ['id' => 3]
+//        ]);
+
+            exit('id = ' . $res['id'] . ' brand = ' . $res['brand']);
     }
 }

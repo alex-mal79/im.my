@@ -4,7 +4,7 @@ namespace core\base\model;
 abstract class BaseModelMethods{
     protected $sqlFunc = ['NOW()'];
     protected function createFields($set, $table = false){
-        $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : '*';
+        $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
         $table = $table ? $table . '.' : '';
         $fields = '';
         foreach ($set['fields'] as $field){
@@ -105,6 +105,7 @@ abstract class BaseModelMethods{
         $fields = '';
         $join = '';
         $where = '';
+        $tables = '';
         if($set['join']){
             $join_table = $table;
             foreach ($set['join'] as $key => $item){
@@ -131,6 +132,7 @@ abstract class BaseModelMethods{
                     else $join .= $join_table;
                     $join .= '.' . $join_fields[0] . '=' . $key . '.' . $join_fields[1];
                     $join_table = $key;
+                    $tables .= ', ' . trim($join_table);
                     if($new_where){
                         if($item['where']){
                             $new_where = false;
@@ -145,7 +147,7 @@ abstract class BaseModelMethods{
                 }
             }
         }
-        return compact('fields', 'join', 'where');
+        return compact('fields', 'join', 'where', 'tables');
     }
     protected function createInsert($fields, $files, $except){
         $insert_arr = [];
@@ -179,6 +181,9 @@ abstract class BaseModelMethods{
                 $update .= $row . '=';
                 if(in_array($value, $this->sqlFunc)){
                     $update .= $value . ',';
+                }
+                elseif ($value === NULL){
+                    $update .= "NULL" . ',';
                 }
                 else{
                     $update .= "'" . addslashes($value) . "',";

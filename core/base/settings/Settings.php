@@ -41,7 +41,11 @@ class Settings{
             'outputMethod' => 'outputData'
         ]
     ];
-
+    private $defaultTable = 'auto';
+    private $templateArr = [
+        'text' => ['name', 'phone', 'address'],
+        'textarea' => ['content', 'keywords']
+    ];
     static public function get($property){
         return self::instance()->$property;
     }

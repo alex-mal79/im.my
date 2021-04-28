@@ -25,7 +25,7 @@ trait BaseMethods{
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
     }
     //Метод перенапрвления
-    protected function redirect($http = false, $code){
+    protected function redirect($http = false, $code = false){
         if($code){
             $codes = ['301' => 'HTTP/1.1 301 Move Permanently'];
             if($codes[$code]) header($codes[$code]);
@@ -38,7 +38,7 @@ trait BaseMethods{
     //Метод записи log-файла
     protected function writeLog($message, $file = 'log.txt', $event = 'Fault'){
         $dateTime = new \DateTime();
-        $str = $event . ': ' . $dateTime->format('d-m-Y G:i:s') . ' - ' . $message . "\r\n";
+        $str = $event . ': ' . $dateTime->format('d-m-Y H:i:s') . ' - ' . $message . "\r\n";
         file_put_contents('log/' . $file, $str, FILE_APPEND);
     }
 }

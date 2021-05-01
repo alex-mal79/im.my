@@ -11,12 +11,19 @@ use core\base\settings\Settings;
 abstract class BaseController{
     use \core\base\controller\BaseMethods;
 
+    protected $header;
+    protected $content;
+    protected $footer;
+    protected $page;
+
+    protected $errors;
+
     protected $controller;
     protected $inputMethod;
     protected $outputMethod;
     protected $parameters;
-    protected $page;
-    protected $errors;
+
+    protected $template;
     protected $styles;
     protected $scripts;
 //Динамическое создание объектов различных классов

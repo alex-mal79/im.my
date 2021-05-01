@@ -17,11 +17,12 @@ class RouteController extends BaseController{
 
     private function __construct(){
         $address_str = $_SERVER['REQUEST_URI'];
-        if(strrpos($address_str, '/') === strlen($address_str) - 1 && strrpos($address_str, '/') !== 0){
-            $this->redirect(rtrim($address_str, '/'), 301);
-        }
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
-        if($path ===PATH){
+        if($path === PATH){
+            if(strrpos($address_str, '/') === strlen($address_str) - 1 &&
+                strrpos($address_str, '/') !== strlen(PATH) -1){
+                $this->redirect(rtrim($address_str, '/'), 301);
+            }
             $this->routes = Settings::get('routes');
             if(!$this->routes) throw new RouteException('Отсутствуют маршруты в базовых настройках', 1);
             //Маршруты для административной части

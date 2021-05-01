@@ -1,19 +1,16 @@
 <?php
 namespace core\base\model;
 
-
-use core\base\controller\Singleton;
 use core\base\exceptions\DbException;
 
-class BaseModel extends BaseModelMethods {
-    use Singleton;
+abstract class BaseModel extends BaseModelMethods {
     protected $db;
     /**
      * Метод подключения к БД
      * BaseModel constructor.
      * @throws DbException
      */
-    private function __construct(){
+    protected function connect(){
         $this->db = @new \mysqli(HOST, USER, PASS, DB_NAME);
         if($this->db->connect_error){
             throw new DbException('Ошибка подключения к базе данных: '

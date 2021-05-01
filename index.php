@@ -3,7 +3,7 @@
 const VG_ACCESS = true;
 //Подключение файловой системы
 const DS = DIRECTORY_SEPARATOR;
-define('ROOT', dirname(__FILE__));
+define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 //Устанавливаем кодировку.
 header('Content-Type:text/html;charset=utf-8');
 session_start();

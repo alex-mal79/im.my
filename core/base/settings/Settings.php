@@ -41,11 +41,20 @@ class Settings{
             'outputMethod' => 'outputData'
         ]
     ];
+    private $expansion = 'core/admin/expansion/';
+
     private $defaultTable = 'auto';
+
+    private $projectTables = [
+        'auto' => ['name' => 'Автомобили', 'img' => 'pages.png'],
+        'parts' => ['name' => 'Запчасти']
+    ];
+
     private $templateArr = [
         'text' => ['name', 'phone', 'address'],
         'textarea' => ['content', 'keywords']
     ];
+
     static public function get($property){
         return self::instance()->$property;
     }

@@ -18,7 +18,10 @@ class ShopSettings{
             ]
         ]
     ];
-
+    private $templateArr = [
+        'text' => ['price', 'short', 'name'],
+        'textarea' => ['goods_content']
+    ];
     static public function get($property){
         return self::getInstance()->$property;
     }

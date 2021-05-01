@@ -1,8 +1,9 @@
 <?php
 defined('VG_ACCESS') or die('Access denied');
 //Шаблоны сайта
-const TEMPLATE = ROOT.DS.'templates'.DS.'default'.DS;
-const ADMIN_TEMPLATE = ROOT.DS.'core'.DS.'admin'.DS.'view'.DS;
+const TEMPLATE = 'templates'.DS.'default'.DS;
+const ADMIN_TEMPLATE = 'core'.DS.'admin'.DS.'view'.DS;
+const UPLOAD_DIR = 'userfiles'.DS;
 //Константы безопасности
 const COOKIE_VERSION = '1.0.0';
 const CRYPT_KEY = '';
@@ -13,11 +14,11 @@ const QTY = 8;
 const QTY_LINKS = 3;
 //Конствнты путей к стилям и скриптам
 const ADMIN_CSS_JS = [
-    'styles' => [],
+    'styles' => ['css/main.css', 'css/font-awesome.min.css'],
     'scripts' => []
 ];
 const USER_CSS_JS = [
-    'styles' => ['css/style.css'],
+    'styles' => [],
     'scripts' => []
 ];
 //Автозагрузка классов

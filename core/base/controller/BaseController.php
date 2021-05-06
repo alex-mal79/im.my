@@ -12,6 +12,7 @@ abstract class BaseController{
     use \core\base\controller\BaseMethods;
 
     protected $header;
+    protected $nav;
     protected $content;
     protected $footer;
     protected $page;
@@ -26,6 +27,8 @@ abstract class BaseController{
     protected $template;
     protected $styles;
     protected $scripts;
+
+    protected $userId;
 //Динамическое создание объектов различных классов
     public function route(){
         $controller = str_replace('/', '\\', $this->controller);

@@ -47,14 +47,27 @@ class Settings{
 
     private $projectTables = [
         'auto' => ['name' => 'Автомобили', 'img' => 'pages.png'],
-        'parts' => ['name' => 'Запчасти']
+        'tires' => ['name' => 'Шины']
     ];
-
     private $templateArr = [
         'text' => ['name', 'phone', 'address'],
         'textarea' => ['content', 'keywords']
     ];
-
+    private $translate = [
+        'name' => ['Название', 'Не более 100 символов']
+    ];
+    private $radio = [
+        'visible' => ['Нет', 'Да', 'default' => 'Да']
+    ];
+    private $rootItems = [
+        'name' => 'Корневая',
+        'tables' => ['articles']
+    ];
+    private $blockNeedle = [
+        'vg-rows' => [],
+        'vg-img' => ['id'],
+        'vg-content' => ['model']
+    ];
     static public function get($property){
         return self::instance()->$property;
     }

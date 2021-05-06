@@ -1,3 +1,4 @@
 <?=$this->header?>
+<?=$this->nav?>
 <?=$this->content?>
 <?=$this->footer?>

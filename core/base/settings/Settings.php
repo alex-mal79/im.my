@@ -45,27 +45,33 @@ class Settings{
 
     private $defaultTable = 'auto';
 
+    private $formTemplates = PATH . 'core/admin/view/include/form_templates/';
+
     private $projectTables = [
         'auto' => ['name' => 'Автомобили', 'img' => 'pages.png'],
         'tires' => ['name' => 'Шины']
     ];
     private $templateArr = [
-        'text' => ['name', 'phone', 'address'],
-        'textarea' => ['content', 'keywords']
+        'text' => ['name'],
+        'textarea' => ['model'],
+        'radio' => ['visible'],
+        'select' => ['menu_position', 'parent_id'],
+        'img' => ['img'],
+        'gallery_img' => ['gallery_img']
     ];
     private $translate = [
-        'name' => ['Название', 'Не более 100 символов']
+        'name' => ['Название:', 'Не более 100 символов.']
     ];
     private $radio = [
         'visible' => ['Нет', 'Да', 'default' => 'Да']
     ];
     private $rootItems = [
         'name' => 'Корневая',
-        'tables' => ['articles']
+        'tables' => ['auto', 'articles']
     ];
     private $blockNeedle = [
         'vg-rows' => [],
-        'vg-img' => ['id'],
+        'vg-img' => ['img', 'gallery_img'],
         'vg-content' => ['model']
     ];
     static public function get($property){

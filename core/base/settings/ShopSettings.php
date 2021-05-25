@@ -5,7 +5,9 @@ use core\base\controller\Singleton;
 use core\base\settings\Settings;
 //Класс настрек плагина магазина
 class ShopSettings{
-    use Singleton;
+    use Singleton{
+        instance as traitInstance;
+    }
 
     private $baseSettings;
 
@@ -23,14 +25,14 @@ class ShopSettings{
         'textarea' => ['goods_content']
     ];
     static public function get($property){
-        return self::getInstance()->$property;
+        return self::instance()->$property;
     }
 
-    static private function getInstance(){
+    static public function instance(){
         if(self::$_instance instanceof self){
             return self::$_instance;
         }
-        self::instance()->baseSettings = Settings::instance(); //Объект основных настроект
+        self::traitInstance()->baseSettings = Settings::instance(); //Объект основных настроект
         $baseProperties = self::$_instance->baseSettings->clueProperties(get_class());
         self::$_instance->setProperty($baseProperties);
         return self::$_instance;

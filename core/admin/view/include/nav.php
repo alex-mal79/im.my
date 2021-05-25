@@ -1,260 +1,160 @@
-<!--Контейнер-->
-<main>
-<!-- Навигация -->
-<nav>
-    <div class="wrap">
-        <div class="menu">
+<main class="main">
+ 
+            <nav class="nav">
+                <div class="">
+                    <div class="menu">
 
-            <div class="menu-list-index">
-                <div class="menu-list__img">
-                    <i class="fa fa-home fa-fw" aria-hidden="true"></i>
-                </div>
+                        <div class="menu-head">
+                            
+                            <div class="site-map site-map_screen">
+                                <a class="flex-sb" href="<?=PATH . \core\base\settings\Settings::get('routes')['admin']['alias']?>/createsitemap">
+                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/sitemap.svg" alt="site-map">
+                                    <span class="site-map__text">Карта сайта</span>
+                                </a>
+                            </div>
+                            
+                            <div class="nav-head">
+                                <a class="nav-head__link" href="#">
+                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/icon-bell.svg" alt="bell">
+                                </a>
+                                <a class="nav-head__link" href="#">
+                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/icon-help.svg" alt="bell">
+                                </a>
+                                <a class="nav-head__link" href="#">
+                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/icon-service.svg" alt="bell">
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="menu__index">
+                            <a class="menu__link flex-sb box" href="/admin">
+                                <img src="<?=PATH.ADMIN_TEMPLATE?>img/home.svg" alt="home">
+                                <span class="menu__text">Главная</span>
+                            </a>
+                        </div>
 
-                <a href="/admin" class="menu-list__link a">
-                    <span class="menu-list__text">
-                       Главная
-                    </span>
-                </a>
-            </div>
+                        <div class="menu__items">
+                            <a class="menu__link flex-sb box" href="#">
+                                <img src="<?=PATH.ADMIN_TEMPLATE?>img/server.svg" alt="db">
+                                <span class="menu__text">База данных</span>
+                            </a>
+                        </div>
 
-            <div class="menu-list">
-                <div class="menu-list__img">
-                    <i class="fa fa-database fa-fw" aria-hidden="true"></i>
-                </div>
-                <span class="menu-list__text">
-                    База данных
-                </span>
-            </div>
+                        <div class="submenu">
+                            <ul>
+                                <?php if($this->menu):?>
+                                    <?php foreach ($this->menu as $table => $item):?>
+                                        <li class="submenu__items">
+                                            <a class="submenu__link flex-sb" href="<?=$this->adminPath?>show/<?=$table?>">
+<!--                                                <img src="--><?//=PATH.ADMIN_TEMPLATE?><!--img/--><?//=$item['img'] ? $item['img'] : 'pages.svg'?><!--" alt="db">-->
+                                                <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                                <span class="submenu__text">
+                                                    <?=$item['name'] ? $item['name'] : $table?>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </ul>
+                        </div>
 
-            <div class="menu-list-item">
-                <ul class="submenu-list">
-                    <?php if($this->menu):?>
-                        <?php foreach ($this->menu as $table => $item):?>
-                            <li class="submenu-list-item">
-                                <div class="menu-list__img">
-                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/<?=$item['img'] ? $item['img'] : 'pages.png'?>" alt="DataBase">
-                                </div>
-                                <a href="<?=$this->adminPath?>show/<?=$table?>" class="menu-list__link a">
-                                    <span class="menu-list__text">
-                                        <?=$item['name'] ? $item['name'] : $table?>
-                                    </span>
+                        <div class="menu__items">
+                            <a class="menu__link flex-sb box" href="#">
+                                <img src="<?=PATH.ADMIN_TEMPLATE?>img/users.svg" alt="db">
+                                <span class="menu__text">Пользователи</span>
+                            </a>
+                        </div>
+
+                        <div class="submenu">
+                            <ul>
+                            <li class="submenu__items">
+                                <a class="submenu__link flex-sb" href="#">
+                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                    <span class="submenu__text">Lorem, ipsum.</span>
                                 </a>
                             </li>
-                        <?php endforeach;?>
-                    <?php endif;?>
-                </ul>
-            </div>
 
-            <div class="menu-list">
-                <div class="menu-list__img">
-                    <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">lorem</span>
+                                    </a>
+                                </li>
+
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">Lorem ipsum dolor sit.</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="menu__items">
+                            <a class="menu__link flex-sb box" href="#">
+                                <img src="<?=PATH.ADMIN_TEMPLATE?>img/service.svg" alt="db">
+                                <span class="menu__text">Настройки</span>
+                            </a>
+                        </div>
+
+                        <div class="submenu">
+                            <ul>
+                            <li class="submenu__items">
+                                <a class="submenu__link flex-sb" href="#">
+                                    <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                    <span class="submenu__text">Lorem, ipsum.</span>
+                                </a>
+                            </li>
+
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">lorem</span>
+                                    </a>
+                                </li>
+
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">Lorem, ipsum dolor.</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="menu__items">
+                            <a class="menu__link flex-sb box" href="#">
+                                <img src="<?=PATH.ADMIN_TEMPLATE?>img/report.svg" alt="db">
+                                <span class="menu__text">Отчеты</span>
+                            </a>
+                        </div>
+
+                        <div class="submenu">
+                            <ul>
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">Lorem, ipsum.</span>
+                                    </a>
+                                </li>
+
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">lorem</span>
+                                    </a>
+                                </li>
+
+                                <li class="submenu__items">
+                                    <a class="submenu__link flex-sb" href="#">
+                                        <img src="<?=PATH.ADMIN_TEMPLATE?>img/pages.svg" alt="db">
+                                        <span class="submenu__text">Lorem, ipsum dolor.</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+
+                    </div>
                 </div>
-                <span class="menu-list__text">
-                    Покупатели
-                </span>
-            </div>
-
-            <div class="menu-list-item">
-                <ul class="submenu-list">
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                1
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                2
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                3
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                4
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                5
-                            </span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="menu-list">
-                <div class="menu-list__img">
-                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
-                </div>
-                <span class="menu-list__text">
-                    Настройки
-                </span>
-            </div>
-
-            <div class="menu-list-item">
-                <ul class="submenu-list">
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                1
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                2
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                3
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                4
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                5
-                            </span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="menu-list">
-                <div class="menu-list__img">
-                    <i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>
-                </div>
-                <span class="menu-list__text">
-                    Отчеты
-                </span>
-            </div>
-
-            <div class="menu-list-item">
-                <ul class="submenu-list">
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                1
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                2
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                3
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                4
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu-list-item">
-                        <div class="menu-list__img">
-                            <img src="" alt="">
-                        </div>
-                        <a href="1.php" class="menu-list__link a">
-                            <span class="menu-list__text">
-                                5
-                            </span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</nav>
+            </nav>

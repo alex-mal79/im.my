@@ -22,12 +22,19 @@ abstract class BaseAdmin extends BaseController {
     protected $translate;
     protected $blocks = [];
 
+    protected $templateArr;
+    protected $formTemplates;
+    protected $noDelete;
+
     protected function inputData(){
         $this->init(true);
         $this->title = 'VG engine';
         if(!$this->model) $this->model = Model::instance();
         if(!$this->menu) $this->menu = Settings::get('projectTables');
         if(!$this->adminPath) $this->adminPath = PATH . Settings::get('routes')['admin']['alias'] . '/';
+        if(!$this->templateArr) $this->templateArr = Settings::get('templateArr');
+        if(!$this->formTemplates) $this->formTemplates = Settings::get('formTemplates');
+
         $this->sendNoCacheHeaders();
     }
     protected function outputData(){

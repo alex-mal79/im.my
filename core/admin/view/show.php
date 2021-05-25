@@ -1,72 +1,73 @@
-    <!-- Контент -->
-    <article>
-        <!-- Вывод данных из таблиц БД -->
-        <div class="wrap">
-            <div class="vg">
-                <!-- Title -->
-                <div class="vg-title vg-wrap vg-title_bg-blue">
-                    <!-- Кнопка -->
-                    <div class="vg-button">
-                        <a href="<?=$this->adminPath?>add/<?=$this->table?>">
-                            <span class="vg-text">Добавить</span>
-                        </a>
-                    </div>
-                    <!-- Название таблицы БД -->
-                    <div class="vg-wrap">
-                        <div class="vg-circle vg-title_bg-blue">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                        </div>
-                        <div class="vg-text vg-text_white">
-                                <span>База данных: таблица "<?=$this->table; ?>"</span>
+<article class="content">
+                <div class="wrap-p">
+                    
+                    <div class="">
+                        <div class="breadcrumbs">
+                            <p class="breadcrumbs__link">Главная / База данных / Автомобили</p>
                         </div>
                     </div>
-                </div>
-                <!-- Список БД -->
-                <div class="wrap wrap_padding-tb-10px">
-                    <div class="vg-items vg-items-item">
-                        <!-- Элемент БД -->
-                        <?php if($this->data):?>
-                            <?php foreach ($this->data as $data):?>
-                                <div class="vg-item vg-wrap">
-                                    <div class="vg-item-img temp vg-wrap">
-                                        <a href="<?=$this->adminPath?>edit/<?=$this->table?>/<?=$data['id']?>" class="wrap vg-wrap">
+                    
+                    <div class="wrap-pb">
+                        <div class="inform-field flex-sb">
+                            <img class="inform-field__img" src="<?=PATH.ADMIN_TEMPLATE?>img/v.svg" alt="">
+                            <span class="inform-field__text">Информационное поле!</span>
+                        </div>
+                    </div>
+                     
+                     <div class="inform-block flex-sb">
+                        <div class="inform-block__item">
+                            <ul>
+                                <li class="inform-block__items">Информация по таблице.</li>
+                            </ul>
+                        </div>
+                        <div class="inform-block__item">
+                            <ul>
+                                <li class="inform-block__items">Статистика по таблице.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="wrap-pb">
+                        <div class="inform-field inform-field_color flex-sb">
+                            <div class="button button_margin">
+                                <a class="button__link flex-sb box" href="<?=$this->adminPath?>add/<?=$this->table?>">Добавить</a>
+                            </div>
+                            <img class="inform-field__img" src="<?=PATH.ADMIN_TEMPLATE?>img/ex-mark.svg" alt="">
+                            <span class="inform-field__text">Таблица БД: "<?=$this->table?>".</span>
+                        </div>
+                    </div>
+                     
+                     <div class="wrap-pb">
+                        <div class="content-inform flex-sb">
+                            <?php if($this->data):?>
+                                <?php foreach ($this->data as $data):?>
+                                    <div class="db-block wrap-mt">
+                                        <a class="db-block__link flex-sb" href="<?=$this->adminPath?>edit/<?=$this->table?>/<?=$data['id']?>">
                                             <?php if ($data['img']):?>
-                                                <img src="<?=PATH . UPLOAD_DIR . $data['img']?>" alt="<?=$data['name']?>">
+                                                <img class="db-block__img" src="<?=PATH . UPLOAD_DIR . $data['img']?>" alt="<?=$data['name']?>">
                                             <?php endif;?>
+                                            
+                                            <span class="db-block__text">
+                                                <?=$data['name']?>
+                                            </span> 
                                         </a>
                                     </div>
-
-                                    <div class="vg-item-text temp vg-wrap">
-                                        <a href="<?=$this->adminPath?>edit/<?=$this->table?>/<?=$data['id']?>" class="wrap vg-wrap">
-                                            <span><?=$data['name']?></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php endforeach;?>
-                        <?php endif;?>
-                    </div>
-                </div>
-                <!-- Title -->
-                <div class="vg-title vg-wrap vg-title_bg-blue">
-                    <!-- Кнопка -->
-                    <div class="vg-button">
-                        <a href="#">
-                            <span class="vg-text">Добавить</span>
-                        </a>
-                    </div>
-                    <!-- Название таблицы БД -->
-                    <div class="vg-wrap">
-                        <div class="vg-circle vg-title_bg-blue">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                        </div>
-                        <div class="vg-text vg-text_white">
-                            <span>База данных: таблица "<?=$this->table; ?>"</span>
+                                <?php endforeach;?>
+                            <?php endif;?>
                         </div>
                     </div>
+                    
+                    <div class="wrap-pb">
+                        <div class="inform-field inform-field_color flex-sb">
+                            <div class="button button_margin">
+                                <a class="button__link flex-sb box" href="<?=$this->adminPath?>add/<?=$this->table?>">Добавить</a>
+                            </div>
+                            <img class="inform-field__img" src="<?=PATH.ADMIN_TEMPLATE?>img/ex-mark.svg" alt="">
+                            <span class="inform-field__text">Таблица БД: "<?=$this->table?>".</span>
+                        </div>
+                    </div>
+
                 </div>
+            </article>
 
-            </div>
-        </div>
-
-    </article>
-    </main>
+        </main>

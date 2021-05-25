@@ -1,12 +1,12 @@
-<!-- Подвал -->
-<footer>
-footer
-</footer>
+        <footer class="footer">
+            footer
+        </footer>
 
-<script>
+    </div>    
+    <script>
     // Основное меню
     // Меню аккордеон
-    const acc = document.getElementsByClassName("menu-list");
+    const acc = document.getElementsByClassName("menu__items");
     for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
             this.classList.toggle("active");
@@ -18,6 +18,6 @@ footer
             }
         });
     }
-</script>
+    </script>
 </body>
 </html>

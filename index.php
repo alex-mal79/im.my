@@ -7,6 +7,7 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 //Устанавливаем кодировку.
 header('Content-Type:text/html;charset=utf-8');
 session_start();
+//error_reporting(0);
 //Подключение конфигурационных файлов
 require_once 'config.php';
 require_once ROOT.DS.'core'.DS.'base'.DS.'settings'.DS.'internal_settings.php';

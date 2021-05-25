@@ -57,6 +57,7 @@ abstract class BaseModel extends BaseModelMethods {
      * @param $table - Таблица БД
      * @param array $set
      * 'fields' => ['id', 'brand']
+     * 'no_concat' => false/true Если true не присоединять имя таблицы к полям и where
      * 'where' => ['brand' => 'AUDI', model => 'A4', 'engine' => '2.0']
      * 'operand' => ['=', '<>']
      * 'condition' => ['AND']
@@ -126,11 +127,8 @@ abstract class BaseModel extends BaseModelMethods {
 
         $insert_arr = $this->createInsert($set['fields'], $set['files'], $set['except']);
 
-        if($insert_arr){
-            $query = "INSERT INTO $table ({$insert_arr['fields']}) VALUES ({$insert_arr['values']})";
-            return $this->query($query, 'c', $set['return_id']);
-        }
-        return false;
+        $query = "INSERT INTO $table {$insert_arr['fields']} VALUES {$insert_arr['values']}";
+        return $this->query($query, 'c', $set['return_id']);
     }
     final public function edit($table, $set = []){
         $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : $_POST;

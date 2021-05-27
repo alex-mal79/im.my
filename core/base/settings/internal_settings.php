@@ -14,7 +14,7 @@ const QTY = 8;
 const QTY_LINKS = 3;
 //Конствнты путей к стилям и скриптам
 const ADMIN_CSS_JS = [
-    'styles' => ['css/main.css', 'css/font-awesome.min.css', 'css/normalize.css'],
+    'styles' => ['css/main.css'],
     'scripts' => []
 ];
 const USER_CSS_JS = [
